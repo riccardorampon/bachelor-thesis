@@ -13,7 +13,10 @@
 \addbibresource{bib/bibliografia.bib}
 
 \usepackage[italian]{babel}
-
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
 % inizio documento
 \begin{document}
 	\renewcommand{\contentsname}{\vspace{-2cm} Indice \vspace{-0.5cm}}
@@ -65,12 +68,7 @@
 	\vspace*{\fill}
 	
 		
-	% ABSTRACT ----------------------------------------------------------------------------
-	\clearpage{\pagestyle{plain}\cleardoublepage}
-	\chapter*{Abstract} % nome capitolo
-	\label{chapter:zero}
-	\addcontentsline{toc}{chapter}{Abstract}
-	\input{abstract.tex} % importa il capitolo dal corrispondente file
+	
 	
 	\pagenumbering{gobble} 
 	\thispagestyle{empty}
@@ -79,47 +77,48 @@
 	
 	\clearpage{\pagestyle{plain}\cleardoublepage} %Numerazione araba per i capitoli
 	\pagenumbering{arabic}
-
+	
+% ABSTRACT ----------------------------------------------------------------------------
+	\clearpage{\pagestyle{plain}\cleardoublepage}
+	\chapter*{Abstract} % nome capitolo
+	\label{chapter:zero}
+	\addcontentsline{toc}{chapter}{Abstract}
+	\input{abstract.tex} % importa il capitolo dal corrispondente file
+	
 	% INTRODUZIONE -------------------------------------------------------------------------
 	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
 	\chapter{Introduzione} % nome capitolo
 	\label{chapter:primo} % label capitolo
-	\addcontentsline{toc}{chapter}{Introduzione}
 	\input{introduzione.tex} % importa il capitolo dal corrispondente file
 	
 	% APPROCCIO PROPOSTO -------------------------------------------------------------------------
 	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
 	\chapter{Approccio proposto} % nome capitolo
 	\label{chapter:secondo} % label capitolo
-	\addcontentsline{toc}{chapter}{Approccio proposto}
 	\input{approccio.tex} % importa il capitolo dal corrispondente file
 
 	% MOD. TOPOLOGIA -------------------------------------------------------------------------
 	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
 	\chapter{Modifiche della topologia proposte} % nome capitolo
 	\label{chapter:terzo} % label capitolo
-	\addcontentsline{toc}{chapter}{Modifiche della topologia proposte}
 	\input{modifica_topologia.tex} % importa il capitolo dal corrispondente file
 
 	% OTTIMIZZATORI -------------------------------------------------------------------------
 	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
 	\chapter{Metodi di ottimizzazione} % nome capitolo
 	\label{chapter:quarto} % label capitolo
-	\addcontentsline{toc}{chapter}{Metodi di ottimizzazione}
 	\input{ottimizzatori.tex} % importa il capitolo dal corrispondente file
 
 	% RIS. SPERIMENTALI -------------------------------------------------------------------------
 	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
 	\chapter{Risultati sperimentali} % nome capitolo
 	\label{chapter:quinto} % label capitolo
-	\addcontentsline{toc}{chapter}{Risultati sperimentali}
 	\input{risultati.tex} % importa il capitolo dal corrispondente file
 	
 	% CONCLUSIONI -------------------------------------------------------------------------
 	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
 	\chapter{Conclusioni} % nome capitolo
 	\label{chapter:sesto} % label capitolo
-	\addcontentsline{toc}{chapter}{Conclusioni}
 	\input{conclusioni.tex} % importa il capitolo dal corrispondente file
 
 	% BIBLIOGRAFIA ------------------------------------------------------
