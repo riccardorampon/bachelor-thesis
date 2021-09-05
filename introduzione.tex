@@ -1,0 +1,153 @@
+\section{Intelligenza artificiale}
+% Cos'è l'intelligenza artificiale
+\cite{boutell2004learning}
+L'intelligenza artificiale, dall'inglese \textit{Artificial Intelligence} (abbreviato in AI), è una disciplina appartenente all'informatica che studia i fondamenti teorici, le metodologie e le tecniche che consentono la programmazione e progettazione di sistemi hardware e software che permettono di dotare gli elaboratori elettronici di determinate caratteristiche che vengono considerate tipicamente umane quali, ad esempio, le percezioni visive, spazio-temporali e decisionali; sono capaci, dunque, di riprodurre parzialmente l'attività intellettuale umana. In particolare, è considerato un comportamento intelligente quello di un programma che apprende dall'esperienza al fine di migliorare le sue prestazioni nella risoluzione di un task.
+\section{Deep-Learning}
+% Deep Learning
+L'approccio più moderno e soprattutto più recente adottato nell'implementazione di intelligenze artificiali è quello dell'\textit{apprendimento profondo} (in inglese Deep Learning) che consiste in un insieme di tecniche basate su reti neurali artificiali composte da molti livelli organizzati gerarchicamente, nel quale ogni livello calcola i valori per quello successivo affinché l'informazione venga elaborata in maniera sempre più completa.
+
+% Reti neurali
+Una \textit{rete neurale artificiale} è un modello computazionale composto da neuroni artificiali, definiti come modello matematico, che si ispirano vagamente al funzionamento dei neuroni biologici e alla struttura di una rete neurale biologica.
+
+\section{Recurrent Neural Network}
+Una parte del lavoro svolto riguarda un categoria particolare di reti neurali: la reti neurali ricorrenti (in inglese Recurrent Neural Network o abbreviato RNN).
+La caratteristica principale di questa tipologia di rete è prevedere delle connessioni di feedback (in genere verso neuroni dello stesso livello, ma anche "all'indietro"). Questo ne complica notevolmente il flusso di informazioni e la fase di addestramento, in quanto è richiesta la considerazione del comportamento della rete in più istanti temporali. Questo tipo di rete è particolarmente indicata quando si lavora con pattern che rappresentano sequenze, perché dotate di un effetto memoria (di breve termine) che al tempo t rende disponibile l'informazione processata al tempo t-1,t-2 e così via. 
+
+Un ruolo fondamentale nella costruzione di una rete neurale ricorrente viene svolto dalle celle, che possiamo considerare come delle componenti principali. La cella è la parte della rete ricorrente che ha uno stato (o memoria) $h_{(t)}$ al suo interno per ogni istanza temporale. E' costituita da un numero prefissato di neuroni (di fatto può essere vista come un layer della rete). Lo stato $h_{(t)}$ dipende dall'input $x_{(t)}$ e dallo stato precedente $h_{(t-1)}$:
+\begin{equation}
+	h_{(t)} = f(h_{(t-1)}, x_{(t)})
+\end{equation}
+Esistono diverse tipologie di celle che differiscono principalmente per la loro struttura e per come trattano lo stato di memoria $h_{(t)}$; un esempio sono le Long-Short Term Memory (LSTM) e le Gated Recurrent Unit (GRU). Quest'ultima tipologia sarà utilizzata nel metodo proposto e nelle varianti topologiche dell'elaborato.
+
+\begin{comment}
+% Obiettivo tesi: modifica della topologia di una rete neurale
+L'oggetto principale del presente studio è stata la modifica della topologia di due reti neurali artificiali, nello specifico di una rete neurale ricorrente (in inglese \textit{Recurrent Neural Netowrk} o abbreviato RNN) con cella GRU (Gated Recurrent Unit) e di una TCN (Temporal Convolutional Neural Network). Un altro argomento presente è stata la trattazione di diverse \textit{feature transform} per la gestione di un dataset altamente sparso.
+
+% Organizzazione dell'elaborato
+La stesura di questo elaborato è stata articolata in quattro capitoli. Inizialmente, verranno brevemente esposti alcuni concetti teorici rilevanti nel contesto delle modifiche svolte. La trattazione proseguirà con la presentazione delle modifiche effettuate e delle feature trasform individuate e le relative performance. Infine, verranno tratte delle conclusioni riguardo il lavoro svolto.
+
+% MATLAB come linguaggio di programmazione % da aggiungere (vedi IVANCHIC)
+Tutto il codice sviluppato il relazione a questo lavoro è stato scritto in MATLAB, un ambiente per il calcolo numerico e l'analisi statistica scritto in linguaggio di programmazione C.
+\end{comment}
+
+\section{Multi-label}
+L'apprendimento Multi-label è una delle classi di apprendimento che ammette per ogni istanza l'assegnazione di più etichette contemporaneamente. Grazie alla particolarità di poter far fronte a oggetti del mondo reale con molteplici significati semantici, l'apprendimento Multi-label può essere utilizzato in diversi domini applicativi che spaziano dal tag recommendation alla bioinformatica, dall'information retrieval al rule mining, web mining e molti altri.
+
+In questo elaborato vengono proposte due modifiche di topologie di reti neurali basate su un nuovo insieme di metodi per la classificazione Multi-label, nei quali la parte centrale è data dalla combinazione di insiemi di Gated Recurrent Units (GRU) e Temporal Convolutional Neural Networks (TCN). Ogni ensemble è sviluppato usando approcci di ottimizzazione differenti, che permettono un aumento delle performance e un rimescolamento delle features per ogni rete rispetto all'uso del metodo Adam orginale. 
+
+Inoltre, un ulteriore miglioramento delle prestazioni è ottenuto combinando tra loro i set proposti di GRU e TCN con lo stato dell'arte per la classificazione Multi-label, Incorporating Multiple Clustering Centers.
+
+\section{Datasets}
+Per valutare i diversi ensemble creati occorrono datasets con categorizzazione multi-label binaria. Sono stati utilizzati nove datasets basati su domini applicativi molto differenti tra loro (image classification, musica, biologia, farmaci):
+
+\begin{itemize} %%%%%%% CITARE OGNI DATASET
+
+	\item Cal500 è un dataset musicale composto da 502 canzoni rappresentate da 68 feature numeriche. Ogni istanza è stata annotata manualmente da annotatori umani utilizzando 174 etichette distinti. Queste etichette sono divise in 6 categorie semantiche: strumentazione, caratteristiche vocali, generi, emozioni, qualità acustica e termini d'uso.
+	
+	\item Image è un dataset composto da 2000 immagini. Nello specifico ogni immagine a colori viene prima convertita nello spazio CIELUV, che è uno spazio colore più percettivamente  uniforme in modo tale che le differenze di colore percepite corrispondano esattamente alle di corrispondano strettamente alle distanze euclidee.Successivamente, l'immagine viene divisa in 49 blocchi utilizzando una griglia 7×7, in cui in ciascun blocco viene calcolata la media e la varianza di ogni banda. Infine, ogni immagine viene trasformata in un feature vector 49×3×2 = 294-dimensionale. 
+	
+	\item Scene (citare) è un dataset etichettato di immagini per la classificazione multipla di scene. Include 2407 istanze rappresentate da 294 feature numeriche e 6 etichette distinte.
+	
+	\item Yeast (citare) è un dataset biologico che include 2417 micro-array di dati e profili filogenetici. Ogni istanza viene rappresentata da 103 feaure numeriche e 14 etichette distinte. 
+	
+	\item Arts (citare) è un dataset costituito da 5000 immagini artistiche, ciascuna descritta da 462 feature numeriche in cui ogni immagine può appartenere ad alcune delle 26 classi presenti.
+	
+	\item ATC (citare) è una raccolta di 3883 prodotti farmaceutici codificati Anatomical Therapeutic Chemical (ATC). Ogni istanza è rappresentata da 42 feature e 14 classi.
+	
+	\item ATC-f (citare) è una variante della raccolta citata sopra che include le stesse istanze, ma rappresentate da un descrittore 806-dimensionale.
+		
+	\item Liu (citare) è un dataset di farmaci raccolti per prevedere in silico i loro effetti collaterali. Comprende 832 farmaci rappresentati da 2892 feature e 1385 etichette.
+	
+	\item mAn (citare) è una dataset di proteine rappresentate da 20 feature e 20 etichette.
+	
+\end{itemize}
+
+Il dataset di riferimento per questo elaborato è il dataset \textit{Liu} che costituisce un insieme di farmaci raccolti per prevedere in silico i loro effetti collaterali.
+
+\vspace{0.25cm}
+
+% tabella riassuntiva
+\begin{table}[h!]
+	\begin{center}
+	\begin{tabular}{|| c | c | c | c ||} 
+ 	\hline
+	\textbf{Nome} & \textbf{n° patterns} & \textbf{n° features} & \textbf{n° etichette} \\
+	\hline
+	CAL500 & 502 & 68 & 174 \\
+	\hline
+	Image & 2000 & 294 & 5 \\
+	\hline
+	Scene & 2407 & 294 & 5 \\
+	\hline
+	Yeast & 2417 & 103 & 14 \\
+	\hline
+	Arts & 5000 & 462 & 26 \\
+	\hline
+	ATC & 3883 & 42 & 14 \\
+	\hline
+	ATC-f & 3883 & 700 & 14 \\
+	\hline
+	Liu & 832 & 2892 & 1385 \\
+	\hline
+	mAn & 3916 & 20 & 20 \\
+	\hline
+	\end{tabular}
+	\caption{Riepilogo dataset}
+	\label{Tabella 1}
+	\end{center}
+\end{table}
+
+\newpage
+\section{Indicatori di performance}
+La classificazione multi-label viene valutata utilizzando diversi indicatori di performance utili per poter confrontare i risultati ottenuti con quelli della Incorporating Multiple Clustering Centers (IMCC), stato dell'arte per la classificazione multi-label. Sia X un insieme di dati che include \textit{m} campioni $x_{i} \in \Re^{d}$ ciascuno avente un'etichetta $y_{i} \in \{0,1\}^{l}$, dove \textit{l} è il numero di etichette. Siano H, F l'insieme di etichette predette, dove $h_{i} \in \{0,1\}^l$ è il vettore dell'etichetta predetta rispetto al campione $x_{i}$ e $f_{i} \in \Re^{l}$ è il valore di confidenza di ciascuna previsione.
+I seguenti indicatori di prestazione possono essere definiti per H, F:
+
+\begin{itemize}
+
+	\item Hamming Loss, è il rapporto fra le etichette classificate erroneamente e il numero totale di etichette,
+	\begin{equation}
+		HLoss(H) = \frac{1}{ml}\sum_{i=1}^{m}\sum_{j=1}^{l}I(y_{i}(j)\neq h_{i}(j))
+	\end{equation}
+	dove $I()$ è la funzione indicatrice. Hamming Loss è una \textit{loss function}, dunque il suo valore ottimo è 0 e il suo upper-bound è 1. Deve essere minimizzata: se il valore dell'hamming loss è 0 allora non sono presenti errori nel vettore dell'etichette predette.
+		
+	
+	\item One error, è il rapporto tra le istanze le cui etichette con il più alto livello di confidenza sono classificate erroneamente, deve essere minimizzato:
+	\begin{equation}
+		OneError(F) = \frac{1}{m}\sum_{i=1}^{m}I(h_{i}(arg\max_{j}f_{i}) \neq y_{i}(arg\max_{j}f_{i}))
+	\end{equation}
+	dove $I()$ è la funzione indicatrice.
+	
+	\item Ranking loss, è il rapporto medio delle coppie di etichette ordinate in modo contrario  per ciascuna istanza. Può essere ottenuto dal valore di confidenza, considerando il numero di confidenze tra coppie di etichette correttamente classificate (cioè un'etichetta classificata correttamente ha un ranking migliore rispetto ad una classificata erroneamente). Ranking loss è una \textit{loss function} e dunque deve essere minimizzato.
+	
+	\item Coverage, è il numero medio di step necessari per spostarsi in basso nella lista delle etichette classificate di una istanza in modo tale da coprire tutte le relative etichette. Dovrebbe essere minimizzato.
+	
+	\item Average precision, è il rapporto medio delle etichette con classificate in modo migliore rispetto ad una particolare etichetta. Deve essere massimizzato.	
+	
+	\item Aiming, è il rapporto tra le etichette correttamente predette e le tutte le etichette previste:
+	\begin{equation}
+		Aiming(H) = \frac{1}{m}\sum_{i=1}^{m}\frac{||h_{i}\cap y_{i}||}{||h_{i}||}
+	\end{equation}
+	
+	\item Recall, valuta quante etichette "positive" sono state effettivamente classificate, indica quanto il sistema è selettivo:
+	\begin{equation}
+		Recall(H) = \frac{1}{m}\sum_{i=1}^{m}\frac{||h_{i}\cap y_{i}||}{||y_{i}||}
+	\end{equation}
+	
+	\item Accuracy, è la percentuale media di etichette correttamente predette rispetto alle etichette totali:
+	\begin{equation}
+		Accuracy(H) = \frac{1}{m}\sum_{i=1}^{m}\frac{||h_{i}\cap y_{i}||}{||h_{i}\cup y_{i}||}
+	\end{equation}
+	
+	\item Absolute true, è la percentuale delle etichette correttamente predette rispetto alle previsioni totali:
+	\begin{equation}
+		AbsTrue(H) = \frac{1}{m}\sum_{i=1}^{m}I(h_{i} == y_{i})
+	\end{equation}
+	
+	\item Absolute false, è la percentuale delle previsioni errate rispetto alle previsioni totali:
+	\begin{equation}
+		AbsFalse(H) = \frac{1}{m}\sum_{i=1}^{m}\frac{||h_{i}\cup y_{i}||-||h_{i}\cap y_{i}||}{l}
+	\end{equation}
+	
+\end{itemize}
+
+

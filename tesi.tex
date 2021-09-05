@@ -1,0 +1,134 @@
+\documentclass[a4paper, 12pt]{book}
+
+% import pacchetti
+\input{model/packages}
+
+% definizione layout documento
+\input{model/layout}
+
+% Comandi ridefiniti
+\input{model/new_commands}
+
+% aggiunta bibliografia
+\addbibresource{bib/bibliografia.bib}
+
+\usepackage[italian]{babel}
+
+% inizio documento
+\begin{document}
+	\renewcommand{\contentsname}{\vspace{-2cm} Indice \vspace{-0.5cm}}
+	
+	% FRONTESPIZIO	
+	\begin{titlepage}
+	
+		\begin{center}
+		
+		 	% immagine sigillo unipd
+			\includegraphics[scale=0.11]{images/sigillo.eps}
+			\vspace*{1cm}
+			
+			\textsc{\LARGE Università degli Studi di Padova}\\
+			\vspace{0.25cm}
+			
+			\textsc{\normalsize Dipartimento di Ingegneria dell'Informazione}\\
+			\vspace{0.25cm}
+			
+			\textsc{\normalsize Corso di Laurea Triennale in Ingegneria Informatica}
+			\vfill
+			
+			% Titolo
+			\textsc{\LARGE Modifica della topologia di una rete neurale GRU e TCN}\\
+			\vfill
+			\vspace{4cm}
+						
+			% Relatore e Laureando
+			\textsl{\large Relatore} \hfill \textsl{\large Laureando}\\
+			\large Prof. Loris Nanni \hfill Riccardo Rampon
+			\vfill
+			
+			% Data, AA
+			{\large Anno Accademico 2020/2021}\\
+			\textsl{\large Padova, 22 settembre 2021}				
+		
+		\end{center}
+		
+	\end{titlepage}
+	
+	\thispagestyle{empty} % pagina bianca dopo il titolo
+	\cleardoublepage
+
+	\clearpage{\pagestyle{plain}\cleardoublepage}
+	\vspace*{\fill}
+	\begin{flushright}
+		\textit{A mamma, papà e Francesco}
+	\end{flushright}
+	\vspace*{\fill}
+	
+		
+	% ABSTRACT ----------------------------------------------------------------------------
+	\clearpage{\pagestyle{plain}\cleardoublepage}
+	%\chapter*{Abstract} % nome capitolo
+	%\label{chapter:zero}
+	\addcontentsline{toc}{chapter}{Abstract}
+	\input{abstract.tex} % importa il capitolo dal corrispondente file
+	
+	
+	\pagenumbering{gobble} 
+	\thispagestyle{empty}
+
+	\clearpage{\pagestyle{plain}\cleardoublepage}
+	\tableofcontents %Indice
+
+	\clearpage{\pagestyle{plain}\cleardoublepage} %Numerazione araba per i capitoli
+	\pagenumbering{arabic}
+
+	% INTRODUZIONE -------------------------------------------------------------------------
+	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
+	\chapter{Introduzione} % nome capitolo
+	\label{chapter:primo} % label capitolo
+	\addcontentsline{toc}{chapter}{Introduzione}
+	\input{introduzione.tex} % importa il capitolo dal corrispondente file
+	
+	% APPROCCIO PROPOSTO -------------------------------------------------------------------------
+	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
+	\chapter{Approccio proposto} % nome capitolo
+	\label{chapter:secondo} % label capitolo
+	\addcontentsline{toc}{chapter}{Approccio proposto}
+	\input{approccio.tex} % importa il capitolo dal corrispondente file
+
+	% MOD. TOPOLOGIA -------------------------------------------------------------------------
+	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
+	\chapter{Modifiche della topologia proposte} % nome capitolo
+	\label{chapter:terzo} % label capitolo
+	\addcontentsline{toc}{chapter}{Modifiche della topologia proposte}
+	\input{modifica_topologia.tex} % importa il capitolo dal corrispondente file
+
+	% OTTIMIZZATORI -------------------------------------------------------------------------
+	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
+	\chapter{Metodi di ottimizzazione} % nome capitolo
+	\label{chapter:quarto} % label capitolo
+	\addcontentsline{toc}{chapter}{Metodi di ottimizzazione}
+	\input{ottimizzatori.tex} % importa il capitolo dal corrispondente file
+
+	% RIS. SPERIMENTALI -------------------------------------------------------------------------
+	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
+	\chapter{Risultati sperimentali} % nome capitolo
+	\label{chapter:quinto} % label capitolo
+	\addcontentsline{toc}{chapter}{Risultati sperimentali}
+	\input{risultati.tex} % importa il capitolo dal corrispondente file
+	
+	% CONCLUSIONI -------------------------------------------------------------------------
+	\clearpage{\pagestyle{plain}\cleardoublepage} % inizia il nuovo capitolo su di una pagina dispari
+	\chapter{Conclusioni} % nome capitolo
+	\label{chapter:sesto} % label capitolo
+	\addcontentsline{toc}{chapter}{Conclusioni}
+	\input{conclusioni.tex} % importa il capitolo dal corrispondente file
+
+	% BIBLIOGRAFIA ------------------------------------------------------
+	\pagestyle{plain}
+	\cleardoublepage
+	\chapter*{Bibliografia} % nome capitolo
+	\addcontentsline{toc}{chapter}{Bibliografia}
+	\printbibliography[heading=none]
+
+\end{document}
