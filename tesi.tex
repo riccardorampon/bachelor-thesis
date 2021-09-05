@@ -10,6 +10,8 @@
 \input{model/new_commands}
 
 % aggiunta bibliografia
+%\usepackage[backend=biber]{biblatex}
+%\usepackage[style=numeric-comp,useprefix,backend=biber]{biber}
 \addbibresource{bib/bibliografia.bib}
 
 \usepackage[italian]{babel}
@@ -17,6 +19,7 @@
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
 \numberwithin{table}{section}
+
 % inizio documento
 \begin{document}
 	\renewcommand{\contentsname}{\vspace{-2cm} Indice \vspace{-0.5cm}}
@@ -66,10 +69,7 @@
 		\textit{A mamma, papà e Francesco}
 	\end{flushright}
 	\vspace*{\fill}
-	
-		
-	
-	
+
 	\pagenumbering{gobble} 
 	\thispagestyle{empty}
 	\clearpage{\pagestyle{plain}\cleardoublepage}
@@ -81,8 +81,8 @@
 % ABSTRACT ----------------------------------------------------------------------------
 	\clearpage{\pagestyle{plain}\cleardoublepage}
 	\chapter*{Abstract} % nome capitolo
-	\label{chapter:zero}
-	\addcontentsline{toc}{chapter}{Abstract}
+	%\label{chapter:zero}
+	%\addcontentsline{toc}{chapter}{Abstract}
 	\input{abstract.tex} % importa il capitolo dal corrispondente file
 	
 	% INTRODUZIONE -------------------------------------------------------------------------
